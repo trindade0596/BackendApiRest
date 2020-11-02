@@ -41,15 +41,16 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter  {
 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager()))
-				.addFilterAfter(new JwtTokenVerifier() ,JwtUsernameAndPasswordAuthenticationFilter.class )
-				.authorizeRequests()
+				.addFilterAfter(new JwtTokenVerifier() ,JwtUsernameAndPasswordAuthenticationFilter.class );
+				/**.authorizeRequests()
 					.antMatchers(HttpMethod.DELETE, "/pais").hasRole("ADMIN")
 					.antMatchers(HttpMethod.POST, "/pais/post").hasRole("ADMIN")
 					.antMatchers(HttpMethod.PUT, "/pais").hasRole("ADMIN")
 					.antMatchers(HttpMethod.GET, "/pais/all").hasRole("ADMIN")
+					.antMatchers(HttpMethod.GET, "/swagger-ui.html").permitAll()
 					//.permitAll()
 					.anyRequest()
-					.authenticated();
+					.authenticated();**/
 					
 				
 	}
