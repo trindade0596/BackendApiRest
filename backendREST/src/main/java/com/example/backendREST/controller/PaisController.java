@@ -23,7 +23,7 @@ import com.example.backendREST.service.PaisRepositoryService;
 
 
 
-@CrossOrigin
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(path ="/pais")
 public class PaisController {
