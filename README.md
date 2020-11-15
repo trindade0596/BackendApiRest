@@ -8,5 +8,5 @@
     "username":"admin",
     "password":"suporte"
 }     
- .tive dificuldade na configuração do Swagger, na parte de autenticação, então sugiro no momento usar o Postman para testar as autorizações com o jwt e o refresh token.
+ Tive dificuldade na configuração do Swagger, na parte de autenticação, então sugiro no momento usar o Postman para testar as autorizações com o jwt e o refresh token.
  
