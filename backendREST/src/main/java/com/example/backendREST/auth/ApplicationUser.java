@@ -14,9 +14,8 @@ import com.example.backendREST.model.Usuario;
 
 
 public class ApplicationUser implements UserDetails{
-	
 
-	
+	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	
 	@Autowired

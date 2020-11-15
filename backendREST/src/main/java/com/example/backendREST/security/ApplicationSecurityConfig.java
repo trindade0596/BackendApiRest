@@ -23,12 +23,14 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter  {
 	
 	private final PasswordEncoder passwordEncoder;
 	private final ApplicationUserService applicationUserService;
+	private final JwtUtil jwtUtil;
 	
 	@Autowired
 	public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,
-									 ApplicationUserService applicationUserService) {
+									 ApplicationUserService applicationUserService, JwtUtil jwtUtil) {
 		this.passwordEncoder = passwordEncoder;
 		this.applicationUserService = applicationUserService;
+		this.jwtUtil = jwtUtil;
 	}
 	
 
@@ -40,17 +42,19 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter  {
 				.sessionManagement()
 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
-				.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager()))
-				.addFilterAfter(new JwtTokenVerifier() ,JwtUsernameAndPasswordAuthenticationFilter.class );
-				/**.authorizeRequests()
+				.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtUtil))
+				.addFilterAfter(new JwtTokenVerifier(authenticationManager(), jwtUtil, applicationUserService) ,JwtUsernameAndPasswordAuthenticationFilter.class )
+				.authorizeRequests()
+				
 					.antMatchers(HttpMethod.DELETE, "/pais").hasRole("ADMIN")
 					.antMatchers(HttpMethod.POST, "/pais/post").hasRole("ADMIN")
 					.antMatchers(HttpMethod.PUT, "/pais").hasRole("ADMIN")
 					.antMatchers(HttpMethod.GET, "/pais/all").hasRole("ADMIN")
+					.antMatchers(HttpMethod.POST,"/login/refresh").hasRole("ADMIN")
 					.antMatchers(HttpMethod.GET, "/swagger-ui.html").permitAll()
-					//.permitAll()
+					.antMatchers(HttpMethod.POST, "/login").permitAll()
 					.anyRequest()
-					.authenticated();**/
+					.authenticated();
 					
 				
 	}
