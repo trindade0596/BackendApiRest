@@ -50,7 +50,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter  {
 					.antMatchers(HttpMethod.POST, "/pais/post").hasRole("ADMIN")
 					.antMatchers(HttpMethod.PUT, "/pais").hasRole("ADMIN")
 					.antMatchers(HttpMethod.GET, "/pais/all").hasRole("ADMIN")
-					.antMatchers(HttpMethod.POST,"/login/refresh").hasRole("ADMIN")
+					.antMatchers(HttpMethod.POST,"/usuario/renovar-ticket").hasRole("ADMIN")
 					.antMatchers(HttpMethod.GET, "/swagger-ui.html").permitAll()
 					.antMatchers(HttpMethod.POST, "/login").permitAll()
 					.anyRequest()

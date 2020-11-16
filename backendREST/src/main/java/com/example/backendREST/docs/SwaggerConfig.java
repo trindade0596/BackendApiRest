@@ -68,7 +68,7 @@ public class SwaggerConfig {
 	    return SecurityContext.builder()
 	        .securityReferences(defaultAuth())
 	        .forPaths(PathSelectors.ant("/pais/**"))
-	        .forPaths(PathSelectors.ant("/login/**"))
+	        .forPaths(PathSelectors.ant("/usuario/**"))
 	        .build();
 	}
 	
